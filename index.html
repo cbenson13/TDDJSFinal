@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="login-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error-message" style="color:red;"></p>
+</div>
+
+<div id="menu-container" style="display:none;">
+    <h2>Welcome!</h2>
+    <button onclick="goToCalculator()">Calculator</button>
+    <button onclick="goToTicTacToe()">Tic-Tac-Toe</button>
+    <div id="timer"></div>
+</div>
+
+<script>
+    const correctUsername = "User1";
+    const correctPassword = "P@ssWord";
+    let timerInterval;
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = '';
+
+        if (username === correctUsername && password === correctPassword) {
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("menu-container").style.display = "block";
+            startTimer();
+        } else {
+            errorMessage.textContent = "Invalid credentials. Please try again.";
+        }
+    }
+
+    function startTimer() {
+        let seconds = 0;
+        timerInterval = setInterval(() => {
+            seconds++;
+            document.getElementById("timer").textContent = `Logged in for: ${seconds} seconds`;
+        }, 1000);
+    }
+
+    function goToCalculator() {
+        window.location.href = 'calculator.html'; // Redirect to the Calculator page
+    }
+
+    function goToTicTacToe() {
+        window.location.href = 'tictac.html'; // Redirect to the Tic-Tac-Toe page
+    }
+</script>
+
+</body>
+</html>
